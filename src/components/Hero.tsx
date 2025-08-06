@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, Download, Mail, Github, Linkedin, Twitter, MapPin } from "lucide-react"
+import { getAssetPath } from "@/lib/config"
 
 const roles = [
   "Full-Stack Developer",
@@ -19,10 +20,10 @@ const personalInfo = {
   title: "Software Developer", 
   description: "Software Developer with 2+ years of experience in React.js, Next.js, TypeScript, Azure, and REST APIs. Skilled in building scalable web applications, Agile workflows, UI/UX design, and performance optimization with tools like GitHub, Figma, and Kontent.ai.",
   location: "HSR Layout, Bengaluru, Karnataka",
-  avatar: "/professional_avtar.png",
+  avatar: getAssetPath("/professional_avtar.png"),
   resume: "https://drive.google.com/file/d/1Ir_bODg0SSnRjrYHycel30ml9s5YWVI0/view?usp=drive_link",
   stats: {
-    experience: "2+",
+    experience: "1+",
     projects: "10+", 
     technologies: "15+",
     contributions: "50+"
@@ -273,6 +274,7 @@ export default function Hero() {
                     height={256}
                     className="w-full h-full object-cover object-top"
                     style={{ objectPosition: '50% 15%' }}
+                    priority
                   />
                 </motion.div>
                 
