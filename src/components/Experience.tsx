@@ -1,157 +1,165 @@
-"use client";
+'use client'
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, ChevronRight } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { workExperience } from '@/data/portfolio';
+import { motion } from 'framer-motion'
+import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { experience } from '@/data/portfolio'
+import { Calendar, MapPin, Building, ExternalLink } from 'lucide-react'
+import { fadeInUp, staggerContainer } from '@/lib/utils'
 
-const Experience = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
+export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Work Experience
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            My professional journey in software development and technology
-          </p>
-        </motion.div>
-
-        {/* Timeline */}
-        <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="relative"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
         >
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-blue-500 hidden md:block"></div>
+          <motion.h2
+            variants={fadeInUp}
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
+          >
+            Professional <span className="text-gray-400">Experience</span>
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-xl text-gray-300 max-w-2xl mx-auto"
+          >
+            My professional journey in software development and technology
+          </motion.p>
+        </motion.div>
 
-          <div className="space-y-12">
-            {workExperience.map((exp, index) => (
-              <motion.div key={index} variants={itemVariants} className="relative">
-                {/* Timeline Dot */}
-                <div className="absolute left-6 w-4 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
-                
-                {/* Experience Card */}
-                <div className="md:ml-16">
-                  <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-purple-500">
-                    <CardHeader>
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div>
-                          <CardTitle className="text-2xl text-gray-900 mb-2">
-                            {exp.position}
-                          </CardTitle>
-                          <div className="flex items-center gap-2 text-purple-600 font-semibold text-lg mb-2">
-                            <Briefcase size={20} />
-                            {exp.company}
-                          </div>
-                          <div className="flex flex-wrap items-center gap-4 text-gray-600">
-                            <div className="flex items-center gap-1">
-                              <Calendar size={16} />
-                              <span className="text-sm">{exp.duration}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MapPin size={16} />
-                              <span className="text-sm">{exp.location}</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Status Badge */}
-                        {index === 0 && (
-                          <Badge variant="tech" className="bg-green-100 text-green-800 px-3 py-1">
-                            Current
-                          </Badge>
-                        )}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="space-y-8"
+        >
+          {experience.map((exp, index) => (
+            <motion.div key={exp.id} variants={fadeInUp}>
+              <Card className="p-8 bg-gray-900/50 border-gray-700/50 hover:bg-gray-900/70 transition-all duration-300">
+                <div className="flex flex-col lg:flex-row gap-8">
+                  {/* Company Info */}
+                  <div className="lg:w-1/3 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                          <Building className="w-6 h-6 text-gray-400" />
+                          {exp.company}
+                          {exp.companyUrl && (
+                            <a 
+                              href={exp.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-400 hover:text-white transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          )}
+                        </h3>
+                        <p className="text-xl text-gray-300 font-medium mt-1">
+                          {exp.position}
+                        </p>
                       </div>
+                      <Badge 
+                        variant="outline" 
+                        className="bg-gray-800 text-gray-300 border-gray-600"
+                      >
+                        {exp.type}
+                      </Badge>
+                    </div>
 
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {exp.technologies.split(', ').map((tech) => (
-                          <Badge key={tech} variant="skill" className="text-xs">
+                    <div className="space-y-2 text-gray-400">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{exp.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" />
+                        <span>{exp.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Technologies */}
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">
+                        Technologies
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech) => (
+                          <Badge
+                            key={tech}
+                            variant="secondary"
+                            className="bg-gray-800 text-gray-300 text-xs"
+                          >
                             {tech}
                           </Badge>
                         ))}
                       </div>
-                    </CardHeader>
+                    </div>
+                  </div>
 
-                    <CardContent>
-                      <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                        <ChevronRight size={16} className="text-purple-500" />
+                  {/* Experience Details */}
+                  <div className="lg:w-2/3 space-y-6">
+                    <p className="text-gray-300 text-lg leading-relaxed">
+                      {exp.description}
+                    </p>
+
+                    {/* Key Achievements */}
+                    <div className="space-y-3">
+                      <h4 className="text-lg font-semibold text-white">
                         Key Achievements
                       </h4>
                       <ul className="space-y-3">
-                        {exp.achievements.map((achievement, achIndex) => (
-                          <motion.li
-                            key={achIndex}
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: achIndex * 0.1 }}
-                            viewport={{ once: true }}
-                            className="flex items-start gap-3 text-gray-700 hover:text-gray-900 transition-colors"
+                        {exp.achievements.map((achievement, achievementIndex) => (
+                          <li
+                            key={achievementIndex}
+                            className="flex items-start gap-3 text-gray-300"
                           >
-                            <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm leading-relaxed">{achievement}</span>
-                          </motion.li>
+                            <div className="w-2 h-2 rounded-full bg-gray-400 mt-2 flex-shrink-0" />
+                            <span className="leading-relaxed">{achievement}</span>
+                          </li>
                         ))}
                       </ul>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Timeline Connector */}
+                {index < experience.length - 1 && (
+                  <div className="flex justify-center mt-8">
+                    <div className="w-px h-8 bg-gray-700/50" />
+                  </div>
+                )}
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full text-purple-700 font-medium">
-            <Briefcase size={20} />
-            <span>Open to new opportunities</span>
-          </div>
+          <p className="text-gray-400 mb-6">
+            Interested in working together or learning more about my experience?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+          >
+            Get In Touch
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </motion.div>
       </div>
     </section>
-  );
-};
-
-export default Experience;
+  )
+}
