@@ -301,11 +301,11 @@ export const experience: Experience[] = [
       "Showcased seamless integration points and essential functionalities for healthcare platform"
     ],
     technologies: ["Blockchain", "Web3", "Figma", "Research", "Healthcare Tech"],
-    companyUrl: "https://ejyhealth.com"
+    companyUrl: "https://credential.certifyme.online/verify/89a8074c3004"
   },
   {
     id: "exp4",
-    company: "ApplibCommunity by Harmony OS",
+    company: "Harmony OS",
     position: "App Development Intern",
     duration: "Sep 2021 - Jun 2022",
     startDate: "2021-09",
@@ -320,7 +320,7 @@ export const experience: Experience[] = [
       "Developed healthcare technology showcasing systematic approach"
     ],
     technologies: ["JavaScript", "Java", "HarmonyOS", "Mobile Development", "OpenWeatherAPI"],
-    companyUrl: "https://harmonyos.com"
+    companyUrl: "https://github.com/applibgroup"
   }
 ]
 

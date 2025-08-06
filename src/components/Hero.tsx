@@ -31,7 +31,7 @@ const personalInfo = {
   social: {
     github: "https://github.com/YashDaga17",
     linkedin: "https://linkedin.com/in/yashdaga17",
-    twitter: "https://twitter.com/yashdaga17"
+    twitter: "https://x.com/yash_17_"
   }
 }
 
