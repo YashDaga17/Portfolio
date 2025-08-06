@@ -624,9 +624,9 @@ export const testimonials: Testimonial[] = [
 export const certificates: Certificate[] = [
   {
     id: "cert1",
-    name: "PowerBI Building Interactive Dashboard using PowerBI for business",
+    name: "Microsoft Power BI Desktop for Business Intelligence",
     issuer: "Microsoft",
-    date: "2024",
+    date: "2025-08",
     skills: ["Power BI", "Data Visualization", "Business Analytics", "Dashboard Design"]
   },
   {
