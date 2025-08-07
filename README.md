@@ -696,7 +696,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Email**: dagayash17@gmail.com
 - **LinkedIn**: [linkedin.com/in/yashdaga17](https://linkedin.com/in/yashdaga17)
 - **GitHub**: [github.com/YashDaga17](https://github.com/YashDaga17)
-- **Portfolio**: [yashdaga17.github.io/portfolio](https://yashdaga17.github.io/portfolio)
+- **Portfolio**: [yashdaga17.github.io/Portfolio](https://yashdaga17.github.io/Portfolio)
 
 ---
 
