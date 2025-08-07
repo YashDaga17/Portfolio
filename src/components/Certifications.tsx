@@ -80,7 +80,7 @@ export default function Certifications() {
               <div className="text-gray-400 text-sm">Technologies</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">2024</div>
+              <div className="text-3xl font-bold text-white mb-2">2025</div>
               <div className="text-gray-400 text-sm">Latest Cert</div>
             </div>
           </motion.div>

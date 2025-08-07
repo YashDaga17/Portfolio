@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { ArrowRight, Download, Mail, Github, Linkedin, Twitter, MapPin } from "lucide-react"
+import { ArrowRight, Download, Mail, Github, Linkedin, Twitter, MapPin, Users } from "lucide-react"
 import { getAssetPath } from "@/lib/config"
 
 const roles = [
@@ -82,12 +82,12 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen lg:min-h-0">
           
           {/* Left Column - Text Content */}
           <motion.div 
-            className="space-y-8"
+            className="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -99,7 +99,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
                 <motion.div 
                   className="w-2 h-2 bg-green-500 rounded-full"
                   animate={{ scale: [1, 1.2, 1] }}
@@ -111,7 +111,7 @@ export default function Hero() {
                 </span>
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-white">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold tracking-tight text-white">
                 Hi, I&apos;m{" "}
                 <span className="bg-gradient-to-r from-green-400 via-white to-green-500 bg-clip-text text-transparent">
                   {personalInfo.name}
@@ -121,7 +121,7 @@ export default function Hero() {
 
             {/* Dynamic Role */}
             <motion.div 
-              className="h-16 flex items-center"
+              className="h-12 sm:h-16 flex items-center justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -133,7 +133,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0, rotateX: 0 }}
                   exit={{ opacity: 0, y: -30, rotateX: 90 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="text-3xl lg:text-5xl font-semibold text-gray-300"
+                  className="text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-semibold text-gray-300"
                 >
                   {roles[currentRole]}
                 </motion.h2>
@@ -152,49 +152,49 @@ export default function Hero() {
 
             {/* Stats */}
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 w-fit"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 w-full sm:w-fit mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
             >
-              <div className="flex flex-wrap gap-8">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 lg:gap-8">
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     {personalInfo.stats.experience}
                   </div>
-                  <div className="text-sm text-gray-400">Years Experience</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                     {personalInfo.stats.projects}
                   </div>
-                  <div className="text-sm text-gray-400">Projects Built</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Projects Built</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
+                  <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
                     {personalInfo.stats.technologies}
                   </div>
-                  <div className="text-sm text-gray-400">Technologies</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                  <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
                     {personalInfo.stats.contributions}
                   </div>
-                  <div className="text-sm text-gray-400">Contributions</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Contributions</div>
                 </div>
               </div>
             </motion.div>
 
             {/* Action Buttons */}
             <motion.div 
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.6 }}
             >
               <a 
                 href="#projects"
-                className="group px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-2"
+                className="group px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 View My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -204,7 +204,7 @@ export default function Hero() {
                 href={personalInfo.resume} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-8 py-4 border-2 border-gray-400 text-gray-300 font-semibold rounded-xl hover:bg-gray-400 hover:text-gray-900 transition-all duration-300 flex items-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-400 text-gray-300 font-semibold rounded-xl hover:bg-gray-400 hover:text-gray-900 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
@@ -212,7 +212,7 @@ export default function Hero() {
               
               <a 
                 href="#contact"
-                className="px-8 py-4 bg-transparent border-2 border-gray-400 text-gray-300 font-semibold rounded-xl hover:bg-gray-800 hover:border-gray-300 transition-all duration-300 flex items-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-gray-400 text-gray-300 font-semibold rounded-xl hover:bg-gray-800 hover:border-gray-300 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 <Mail className="w-4 h-4" />
                 Get in Touch
@@ -221,7 +221,7 @@ export default function Hero() {
 
             {/* Social Links */}
             <motion.div 
-              className="flex items-center gap-4 pt-4"
+              className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
@@ -239,9 +239,9 @@ export default function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </a>
                 ))}
               </div>
@@ -250,19 +250,19 @@ export default function Hero() {
 
           {/* Right Column - Visual Content */}
           <motion.div 
-            className="relative"
+            className="relative flex justify-center order-1 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             {/* Main Profile Card */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 relative overflow-hidden group">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-6 sm:p-8 relative overflow-hidden group max-w-sm w-full">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
               
               {/* Profile Image */}
               <div className="relative">
                 <motion.div 
-                  className="relative mx-auto w-64 h-64 rounded-3xl overflow-hidden"
+                  className="relative mx-auto w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl overflow-hidden"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -280,19 +280,19 @@ export default function Hero() {
                 
                 {/* Profile Info */}
                 <div className="text-center mt-6 space-y-2">
-                  <h3 className="text-xl font-semibold text-white">{personalInfo.name}</h3>
-                  <p className="text-gray-400">{personalInfo.title}</p>
-                  <div className="flex items-center justify-center gap-1 text-sm text-gray-400">
-                    <MapPin className="w-4 h-4" />
+                  <h3 className="text-lg sm:text-xl font-semibold text-white">{personalInfo.name}</h3>
+                  <p className="text-sm sm:text-base text-gray-400">{personalInfo.title}</p>
+                  <div className="flex items-center justify-center gap-1 text-xs sm:text-sm text-gray-400">
+                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                     {personalInfo.location}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Floating Achievement Cards */}
+            {/* Floating Achievement Cards - Better positioned for mobile */}
             <motion.div
-              className="absolute -top-6 -left-6 z-10"
+              className="absolute -top-4 -left-2 sm:-top-6 sm:-left-6 z-10"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.4, duration: 0.6 }}
@@ -300,15 +300,15 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              className="absolute -bottom-6 -right-6 z-10"
+              className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-6 z-10"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.6, duration: 0.6 }}
             >
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-3 text-white">
-                <div className="flex items-center gap-2">
-                  <span className="text-blue-500">👥</span>
-                  <span className="text-sm font-medium">Software Developer</span>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-2 sm:p-3 text-white">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Users className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium whitespace-nowrap">Software Developer</span>
                 </div>
               </div>
             </motion.div>
