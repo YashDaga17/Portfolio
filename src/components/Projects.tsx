@@ -23,13 +23,24 @@ const categories = ['All', 'Web App', 'Mobile App', 'API', 'Tool']
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [showAll, setShowAll] = useState(false)
+  const [displayCount, setDisplayCount] = useState(6)
+  const itemsPerPage = 3
 
   const filteredProjects = projects.filter(project => 
     selectedCategory === 'All' || project.category === selectedCategory
   )
 
-  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6)
+  const displayedProjects = filteredProjects.slice(0, displayCount)
+  const hasMore = displayCount < filteredProjects.length
+
+  const handleViewMore = () => {
+    setDisplayCount(prev => Math.min(prev + itemsPerPage, filteredProjects.length))
+  }
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    setDisplayCount(6) // Reset display count when category changes
+  }
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
@@ -62,7 +73,7 @@ export default function Projects() {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryChange(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
                     ? 'bg-white text-black'
@@ -257,8 +268,8 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Show More/Less Button */}
-        {filteredProjects.length > 6 && (
+        {/* View More Button */}
+        {hasMore && (
           <motion.div
             variants={fadeInUp}
             initial="hidden"
@@ -267,11 +278,11 @@ export default function Projects() {
             className="text-center mt-12"
           >
             <Button
-              onClick={() => setShowAll(!showAll)}
+              onClick={handleViewMore}
               variant="outline"
-              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3"
+              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 active:bg-gray-800 px-6 sm:px-8 py-3 touch-manipulation text-sm sm:text-base"
             >
-              {showAll ? 'Show Less' : `Show All ${filteredProjects.length} Projects`}
+              View More Projects ({filteredProjects.length - displayCount} remaining)
             </Button>
           </motion.div>
         )}

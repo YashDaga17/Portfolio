@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -39,6 +40,15 @@ const getCertIcon = (certName: string) => {
 }
 
 export default function Certifications() {
+  const [displayCount, setDisplayCount] = useState(6)
+  const itemsPerPage = 3
+
+  const displayedCertificates = certificates.slice(0, displayCount)
+  const hasMore = displayCount < certificates.length
+
+  const handleViewMore = () => {
+    setDisplayCount(prev => Math.min(prev + itemsPerPage, certificates.length))
+  }
   return (
     <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
       <div className="max-w-7xl mx-auto">
@@ -93,7 +103,7 @@ export default function Certifications() {
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {certificates.map((cert) => {
+          {displayedCertificates.map((cert) => {
             const IconComponent = getCertIcon(cert.name)
             return (
               <motion.div key={cert.id} variants={scaleIn}>
@@ -181,6 +191,25 @@ export default function Certifications() {
             )
           })}
         </motion.div>
+
+        {/* View More Button */}
+        {hasMore && (
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button
+              onClick={handleViewMore}
+              variant="outline"
+              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 active:bg-gray-800 px-6 sm:px-8 py-3 touch-manipulation text-sm sm:text-base"
+            >
+              View More Certifications ({certificates.length - displayCount} remaining)
+            </Button>
+          </motion.div>
+        )}
 
         {/* Call to Action */}
         <motion.div

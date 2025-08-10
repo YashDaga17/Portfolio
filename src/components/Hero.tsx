@@ -226,8 +226,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
             >
-              <span className="text-sm text-gray-400">Follow me:</span>
-              <div className="flex gap-2">
+              <span className="text-sm sm:text-base text-gray-400 text-center sm:text-left">Follow me:</span>
+              <div className="flex gap-2 sm:gap-3">
                 {[
                   { icon: Github, href: personalInfo.social.github, label: "GitHub" },
                   { icon: Linkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
@@ -239,9 +239,9 @@ export default function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 sm:w-11 sm:h-11 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white active:text-white hover:bg-white/10 active:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95 touch-manipulation"
                   >
-                    <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </a>
                 ))}
               </div>
@@ -317,16 +317,23 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
+      {/* Scroll Indicator - Hidden on mobile */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1 }}
       >
         <motion.div
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center cursor-pointer hover:border-gray-300 transition-colors"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
+          onClick={() => {
+            const aboutSection = document.getElementById('about')
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
         >
           <motion.div
             className="w-1 h-3 bg-gray-400 rounded-full mt-2"

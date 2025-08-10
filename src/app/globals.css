@@ -87,6 +87,8 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
 
   /* Custom Scrollbar */
@@ -301,6 +303,30 @@
   @media (min-width: 1536px) {
     .container-fluid {
       max-width: 1536px;
+    }
+  }
+
+  /* Touch optimizations for mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improve touch targets */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  /* Better scroll behavior on mobile */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Fix mobile viewport issues */
+  @media (max-width: 768px) {
+    .min-h-screen {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
     }
   }
 }

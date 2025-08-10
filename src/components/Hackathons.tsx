@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -22,6 +23,16 @@ import {
 import { fadeInUp, staggerContainer, scaleIn } from '@/lib/utils'
 
 export default function Hackathons() {
+  const [displayCount, setDisplayCount] = useState(2)
+  const itemsPerPage = 1
+
+  const displayedHackathons = hackathons.slice(0, displayCount)
+  const hasMore = displayCount < hackathons.length
+
+  const handleViewMore = () => {
+    setDisplayCount(prev => Math.min(prev + itemsPerPage, hackathons.length))
+  }
+
   return (
     <section id="hackathons" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-7xl mx-auto">
@@ -69,15 +80,9 @@ export default function Hackathons() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-        >
-          {hackathons.map((hackathon) => (
-            <motion.div key={hackathon.id} variants={scaleIn}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {displayedHackathons.map((hackathon, index) => (
+            <div key={hackathon.id}>
               <Card className="group h-full bg-gray-900/50 border-gray-700/50 overflow-hidden hover:bg-gray-900/70 hover:border-gray-600/50 transition-all duration-500">
                 {/* Header */}
                 <div className="relative p-6 bg-gradient-to-br from-gray-800 to-gray-900">
@@ -257,9 +262,22 @@ export default function Hackathons() {
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* View More Button */}
+        {hasMore && (
+          <div className="text-center mt-12">
+            <Button
+              onClick={handleViewMore}
+              variant="outline"
+              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 active:bg-gray-800 px-6 sm:px-8 py-3 touch-manipulation text-sm sm:text-base"
+            >
+              View More Hackathons ({hackathons.length - displayCount} remaining)
+            </Button>
+          </div>
+        )}
 
         {/* Call to Action */}
         <motion.div

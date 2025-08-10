@@ -1,11 +1,16 @@
 'use client'
 
+import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { experience } from '@/data/portfolio'
 import { Calendar, MapPin, Building, ExternalLink } from 'lucide-react'
 
 export default function Experience() {
+  const [displayCount, setDisplayCount] = useState(2)
+  const itemsPerPage = 1
+
   if (!experience || experience.length === 0) {
     return (
       <section id="experience" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-black">
@@ -17,6 +22,13 @@ export default function Experience() {
         </div>
       </section>
     )
+  }
+
+  const displayedExperience = experience.slice(0, displayCount)
+  const hasMore = displayCount < experience.length
+
+  const handleViewMore = () => {
+    setDisplayCount(prev => Math.min(prev + itemsPerPage, experience.length))
   }
 
   return (
@@ -33,7 +45,7 @@ export default function Experience() {
 
         {/* Experience Cards */}
         <div className="space-y-6 sm:space-y-8">
-          {experience.map((exp, index) => (
+          {displayedExperience.map((exp, index) => (
             <div key={exp.id} className="w-full">
               <Card className="p-3 sm:p-4 md:p-6 lg:p-8 bg-gray-900/50 border-gray-700/50 hover:bg-gray-900/70 transition-all duration-300 w-full">
                 <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
@@ -129,7 +141,7 @@ export default function Experience() {
                 </div>
 
                 {/* Timeline Connector */}
-                {index < experience.length - 1 && (
+                {index < displayedExperience.length - 1 && (
                   <div className="flex justify-center mt-6 sm:mt-8">
                     <div className="w-px h-8 bg-gray-700/50" />
                   </div>
@@ -138,6 +150,19 @@ export default function Experience() {
             </div>
           ))}
         </div>
+
+        {/* View More Button */}
+        {hasMore && (
+          <div className="text-center mt-12 sm:mt-16">
+            <Button
+              onClick={handleViewMore}
+              variant="outline"
+              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 active:bg-gray-800 px-6 sm:px-8 py-3 mb-8 touch-manipulation text-sm sm:text-base"
+            >
+              View More Experience ({experience.length - displayCount} remaining)
+            </Button>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center mt-12 sm:mt-16">
